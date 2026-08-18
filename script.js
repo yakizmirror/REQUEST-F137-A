@@ -54,11 +54,11 @@ const schoolAddress = document.getElementById("schoolAddress");
 const schoolYear = document.getElementById("schoolYear");
 const yearSection = document.getElementById("yearSection");
 const requestDate = document.getElementById("requestDate");
-document.getElementById('previewCopyForASCB').classList.toggle('active', document.getElementById('copyForASCB').checked);
 const firstRequest = document.getElementById("firstRequest");
 const secondRequest = document.getElementById("secondRequest");
 const urgentRequest = document.getElementById("urgentRequest");
 const bearerRequest = document.getElementById("bearerRequest");
+const copyForASCB = document.getElementById("copyForASCB");
 
 const generateBtn = document.getElementById("generateBtn");
 const printBtn = document.getElementById("printBtn");
@@ -89,10 +89,9 @@ const previewFirstRequest = document.getElementById("previewFirstRequest");
 const previewSecondRequest = document.getElementById("previewSecondRequest");
 const previewUrgent = document.getElementById("previewUrgent");
 const previewBearer = document.getElementById("previewBearer");
-const previewPurpose = document.getElementById("previewPurpose");
+const previewCopyForASCB = document.getElementById("previewCopyForASCB");
 
 const officialHeader = document.getElementById("officialHeader");
-const headerImage = document.getElementById("headerImage");
 
 const pluralTag = document.getElementById("pluralTag");
 const pluralTag2 = document.getElementById("pluralTag2");
@@ -108,7 +107,6 @@ document.addEventListener("DOMContentLoaded", () => {
     loadCourses();
     setTodayDate();
     setupEvents();
-    checkHeaderImage();
     renderStudentsList();
     updatePreview();
 });
@@ -116,16 +114,6 @@ document.addEventListener("DOMContentLoaded", () => {
 window.addEventListener("load", () => {
     setTimeout(() => { loadPreviousForm(); }, 100);
 });
-
-/* =========================================================
-   HEADER IMAGE FALLBACK
-   If Capture.JPG isn't provided next to these files, show a
-   clean text-based header instead of a broken image icon.
-========================================================= */
-
-headerImage.onerror = function() {
-    officialHeader.classList.add('no-image');
-};
 
 /* =========================================================
    STORAGE HELPERS
@@ -239,7 +227,6 @@ function setupEvents() {
     schoolAddress.addEventListener("input", () => { updatePreview(); saveCurrentForm(); });
 
     requestDate.addEventListener("change", () => { updatePreview(); saveCurrentForm(); });
-    purpose.addEventListener("input", () => { updatePreview(); saveCurrentForm(); });
 
     firstRequest.addEventListener("change", () => {
         if (firstRequest.checked) secondRequest.checked = false;
@@ -255,6 +242,7 @@ function setupEvents() {
 
     urgentRequest.addEventListener("change", () => { updatePreview(); saveCurrentForm(); });
     bearerRequest.addEventListener("change", () => { updatePreview(); saveCurrentForm(); });
+    if (copyForASCB) copyForASCB.addEventListener("change", () => { updatePreview(); saveCurrentForm(); });
 
     generateBtn.addEventListener("click", generateLetter);
     printBtn.addEventListener("click", printLetter);
@@ -565,16 +553,7 @@ function updatePreview() {
     setPreviewCheck(previewSecondRequest, secondRequest.checked);
     setPreviewCheck(previewUrgent, urgentRequest.checked);
     setPreviewCheck(previewBearer, bearerRequest.checked);
-
-    const purposeText = purpose.value.trim();
-
-    if (purposeText) {
-        previewPurpose.textContent = "Purpose: " + purposeText;
-        previewPurpose.classList.add("visible");
-    } else {
-        previewPurpose.textContent = "";
-        previewPurpose.classList.remove("visible");
-    }
+    setPreviewCheck(previewCopyForASCB, copyForASCB ? copyForASCB.checked : false);
 
     renderStudentTable();
 }
@@ -685,11 +664,11 @@ function clearForm() {
     schoolAddress.value = "";
     schoolYear.value = "";
     yearSection.value = "";
-    purpose.value = "";
     firstRequest.checked = false;
     secondRequest.checked = false;
     urgentRequest.checked = false;
     bearerRequest.checked = false;
+    if (copyForASCB) copyForASCB.checked = false;
 
     studentsList = [];
     renderStudentsList();
@@ -714,11 +693,11 @@ function saveCurrentForm() {
         schoolYear: schoolYear.value.trim(),
         yearSection: yearSection.value.trim(),
         requestDate: requestDate.value,
-        purpose: purpose.value.trim(),
         firstRequest: firstRequest.checked,
         secondRequest: secondRequest.checked,
         urgentRequest: urgentRequest.checked,
         bearerRequest: bearerRequest.checked,
+        copyForASCB: copyForASCB ? copyForASCB.checked : false,
         studentsList: studentsList
     };
 
@@ -742,12 +721,12 @@ function loadPreviousForm() {
         schoolYear.value = data.schoolYear || "";
         yearSection.value = data.yearSection || "";
         requestDate.value = data.requestDate || requestDate.value;
-        purpose.value = data.purpose || "";
 
         firstRequest.checked = Boolean(data.firstRequest);
         secondRequest.checked = Boolean(data.secondRequest);
         urgentRequest.checked = Boolean(data.urgentRequest);
         bearerRequest.checked = Boolean(data.bearerRequest);
+        if (copyForASCB) copyForASCB.checked = Boolean(data.copyForASCB);
 
         studentsList = Array.isArray(data.studentsList) ? data.studentsList : [];
         renderStudentsList();
@@ -781,8 +760,8 @@ function showToast(message, type = "success") {
 
 const autoSaveFields = [
     studentName, courseSelect, schoolSelect, schoolAddress,
-    schoolYear, yearSection, requestDate, purpose,
-    firstRequest, secondRequest, urgentRequest, bearerRequest
+    schoolYear, yearSection, requestDate,
+    firstRequest, secondRequest, urgentRequest, bearerRequest, copyForASCB
 ];
 
 autoSaveFields.forEach((field) => {
