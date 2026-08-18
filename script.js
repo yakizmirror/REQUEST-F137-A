@@ -24,7 +24,7 @@ const DEFAULT_SCHOOLS = [
 ];
 
 const DEFAULT_COURSES = [
-    "BSIT", "BSCS", "BSIS",  "BEED", "BSBA-MM", "BSBA-FM", "BSBA-HRDM", "BSED-ENGLISH", "BSCRIM",
+    "BSIT", "BSCS", "BSIS", "BEED", "BSBA-MM", "BSBA-FM", "BSBA-HRDM", "BSED-ENGLISH"
 ];
 
 const MAX_STUDENTS = 8;
@@ -123,17 +123,9 @@ window.addEventListener("load", () => {
    clean text-based header instead of a broken image icon.
 ========================================================= */
 
-function checkHeaderImage() {
-    if (!headerImage) return;
-
-    headerImage.addEventListener("error", () => {
-        officialHeader.classList.add("no-image");
-    });
-
-    if (headerImage.complete && headerImage.naturalWidth === 0) {
-        officialHeader.classList.add("no-image");
-    }
-}
+headerImage.onerror = function() {
+    officialHeader.classList.add('no-image');
+};
 
 /* =========================================================
    STORAGE HELPERS
