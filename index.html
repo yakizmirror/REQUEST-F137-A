@@ -184,22 +184,22 @@
                 </div>
             </section>
 
-            <!-- PURPOSE -->
+            <!-- COPY FOR -->
             <section class="form-section">
                 <div class="section-heading">
-                    <span class="section-icon"><i class="fa-solid fa-pen-to-square"></i></span>
+                    <span class="section-icon"><i class="fa-solid fa-copy"></i></span>
                     <div>
                         <h3>Additional Information</h3>
                         <p>Optional details</p>
                     </div>
                 </div>
-
+            
                 <div class="form-group">
-                    <label for="purpose">Purpose of Request</label>
-                    <div class="textarea-wrapper">
-                        <i class="fa-regular fa-file-lines"></i>
-                        <textarea id="purpose" rows="3" placeholder="Enter purpose of requesting Form 137..."></textarea>
-                    </div>
+                    <label class="check-option" style="width:100%;">
+                        <input type="checkbox" id="copyForASCB">
+                        <span class="check-box"><i class="fa-solid fa-check"></i></span>
+                        <span>Copy for Andres Soriano Colleges of Bislig, Inc.</span>
+                    </label>
                 </div>
             </section>
 
@@ -301,11 +301,11 @@
                     <div class="letter-options">
                         <div class="letter-option">
                             <span class="print-check" id="previewFirstRequest"></span>
-                            <span>1st request</span>
+                            <span>1st Request</span>
                         </div>
                         <div class="letter-option">
                             <span class="print-check" id="previewSecondRequest"></span>
-                            <span>2nd request</span>
+                            <span>2nd Request</span>
                         </div>
                         <div class="letter-option">
                             <span class="print-check" id="previewUrgent"></span>
@@ -314,6 +314,10 @@
                         <div class="letter-option">
                             <span class="print-check" id="previewBearer"></span>
                             <span>Please entrust to the bearer</span>
+                        </div>
+                        <div class="letter-option" style="grid-column: 1 / -1;">
+                            <span class="print-check" id="previewCopyForASCB"></span>
+                            <span>Copy for Andres Soriano Colleges of Bislig, Inc.</span>
                         </div>
                     </div>
 
