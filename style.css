@@ -567,7 +567,7 @@ img { max-width: 100%; display: block; }
 /* ========================================================= SIGNATURE ========================================================= */
 
 .signature-block {
-    position: absolute; right: var(--paper-right); bottom: 3.00in;
+    position: absolute; right: var(--paper-right); bottom: 2.6in;
     width: 3.25in; text-align: center;
     font-family: "Libre Baskerville", Georgia, serif;
     font-size: 9.5pt; line-height: 1.35; z-index: 5;
@@ -875,7 +875,7 @@ button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-
 
     .signature-block {
         position: absolute !important;
-        right: var(--paper-right) !important; bottom: 3.00in !important;
+        right: var(--paper-right) !important; bottom: 2.6in !important;
         width: 3.25in !important; text-align: center !important;
         font-size: 9.5pt !important; line-height: 1.35 !important; z-index: 5 !important;
     }
