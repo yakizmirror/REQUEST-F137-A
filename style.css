@@ -407,57 +407,76 @@ img { max-width: 100%; display: block; }
     box-shadow: 0 18px 50px rgba(15,23,42,.18);
 }
 
-.letter-paper::before {
-    content: "";
-    position: absolute;
-    top: .18in; right: .18in; bottom: .18in; left: .18in;
-    border: 1px solid rgba(16,42,67,.12);
-    pointer-events: none; z-index: 0;
-}
+
 
 .letter-intro { text-indent: 0.5in; text-align: justify; line-height: 1.6; margin-top: 0.10in; margin-bottom: 0.20in; }
 
 /* ========================================================= PAPER WATERMARK (center logo) ========================================================= */
 
 .paper-watermark {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 4.6in; height: auto;
-    max-width: 65%;
-    opacity: .10;
-    z-index: 1;
-    pointer-events: none;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
+    display: block !important;
+    position: absolute !important;
+    top: 50% !important; left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 6.5in !important; height: auto !important;   /* palakihin din dito */
+    max-width: 85% !important;
+    opacity: .10 !important;
+    z-index: 1 !important;
+    pointer-events: none !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
 }
+
+/* ========================================================= OFFICIAL HEADER ========================================================= */
+
+/* ========================================================= OFFICIAL HEADER ========================================================= */
 
 /* ========================================================= OFFICIAL HEADER ========================================================= */
 
 .official-header {
     position: relative; z-index: 5;
     width: var(--paper-width); max-width: var(--paper-width);
-    margin: calc(-1 * var(--paper-top)) calc(-1 * var(--paper-left)) .16in;
-    padding: 0; text-align: center; line-height: 0; overflow: hidden;
+    margin: calc(-1 * var(--paper-top)) calc(-1 * var(--paper-left)) .22in;
+    padding: .24in .35in .14in;
+    box-sizing: border-box;
+    display: flex; align-items: center; gap: .20in;
+    background: #fbfaf6;
+    border-bottom: 3px solid var(--navy);
 }
 
-.header-image { display: block; width: var(--paper-width); max-width: var(--paper-width); height: auto; margin: 0; padding: 0; object-fit: contain; object-position: center top; }
+.header-logo {
+    width: 1.9in; height: 1.6in;   /* dati .88in, palakihin mo lang ito */
+    flex-shrink: 0;
+    object-fit: contain;
+}
 
-/* Fallback header shown if Capture.JPG is missing so the letter still looks complete */
-.header-fallback {
-    display: none;
-    padding: .35in 0 .22in;
-    text-align: center;
+.header-text { flex: 1; min-width: 0; text-align: left; }
+
+.header-schoolname {
+    margin: 0;
     font-family: "Libre Baskerville", Georgia, serif;
-    border-bottom: 3px double var(--navy);
+    font-size: 18.5pt;
+    font-weight: 700;
+    line-height: 1.14;
+    color: var(--navy);
 }
 
-.header-fallback-title { font-size: 15pt; font-weight: 700; letter-spacing: .5px; color: var(--navy); }
-.header-fallback-sub { margin-top: 4px; font-size: 9pt; color: var(--gray-600); }
+.header-address {
+    margin: 4px 0 0;
+    font-family: "Libre Baskerville", Georgia, serif;
+    font-size: 9pt;
+    font-weight: 400;
+    color: #3f3f3f;
+}
 
-.official-header.no-image .header-fallback { display: block; }
-.official-header.no-image .header-image { display: none; }
-
+.header-office {
+    margin: 4px 0 0;
+    font-family: "Libre Baskerville", Georgia, serif;
+    font-size: 11pt;
+    font-weight: 700;
+    color: #171717;
+    letter-spacing: .3px;
+}
 /* ========================================================= LETTER DATE ========================================================= */
 
 .letter-date { margin-top: .04in; margin-bottom: .18in; text-align: right; font-family: "Libre Baskerville", Georgia, serif; font-size: 9.5pt; line-height: 1.4; }
@@ -781,31 +800,33 @@ button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-
     .official-header {
         position: relative !important; z-index: 5 !important;
         width: var(--paper-width) !important; max-width: var(--paper-width) !important;
-        margin: calc(-1 * var(--paper-top)) calc(-1 * var(--paper-left)) .16in !important;
-        padding: 0 !important; text-align: center !important; line-height: 0 !important; overflow: hidden !important;
+        margin: calc(-1 * var(--paper-top)) calc(-1 * var(--paper-left)) .22in !important;
+        padding: .24in .35in .14in !important;
+        box-sizing: border-box !important;
+        display: flex !important; align-items: center !important; gap: .20in !important;
+        background: #fbfaf6 !important;
+        border-bottom: 3px solid var(--navy) !important;
+        overflow: visible !important;
     }
 
-    .header-image {
-        display: block !important;
-        width: var(--paper-width) !important; max-width: var(--paper-width) !important;
-        height: auto !important; max-height: none !important;
-        margin: 0 !important; padding: 0 !important;
-        object-fit: contain !important; object-position: center top !important;
-    }
-
+    .header-logo { width: 1.9in !important; height: 1.6in !important; flex-shrink: 0 !important; object-fit: contain !important; }
+    .header-text { flex: 1 !important; min-width: 0 !important; text-align: left !important; }
+    .header-schoolname { font-family: "Libre Baskerville", Georgia, serif !important; font-size: 18.5pt !important; font-weight: 700 !important; line-height: 1.14 !important; color: var(--navy) !important; }
+    .header-address { font-family: "Libre Baskerville", Georgia, serif !important; font-size: 9pt !important; color: #3f3f3f !important; }
+    .header-office { font-family: "Libre Baskerville", Georgia, serif !important; font-size: 11pt !important; font-weight: 700 !important; color: #171717 !important; letter-spacing: .3px !important; }
     .paper-watermark {
-        display: block !important;
-        position: absolute !important;
-        top: 50% !important; left: 50% !important;
-        transform: translate(-50%, -50%) !important;
-        width: 4.6in !important; height: auto !important;
-        max-width: 65% !important;
-        opacity: .10 !important;
-        z-index: 1 !important;
-        pointer-events: none !important;
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
-    }
+    display: block !important;
+    position: absolute !important;
+    top: 50% !important; left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 6.5in !important; height: auto !important;   /* palakihin din dito */
+    max-width: 85% !important;
+    opacity: .10 !important;
+    z-index: 1 !important;
+    pointer-events: none !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+}
 
     .letter-date { margin-top: .04in !important; margin-bottom: .18in !important; font-size: 9.5pt !important; line-height: 1.4 !important; }
     .recipient-block { margin-bottom: .18in !important; font-size: 9.5pt !important; line-height: 1.45 !important; }
