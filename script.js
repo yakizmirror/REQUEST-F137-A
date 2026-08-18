@@ -54,7 +54,7 @@ const schoolAddress = document.getElementById("schoolAddress");
 const schoolYear = document.getElementById("schoolYear");
 const yearSection = document.getElementById("yearSection");
 const requestDate = document.getElementById("requestDate");
-const purpose = document.getElementById("purpose");
+document.getElementById('previewCopyForASCB').classList.toggle('active', document.getElementById('copyForASCB').checked);
 const firstRequest = document.getElementById("firstRequest");
 const secondRequest = document.getElementById("secondRequest");
 const urgentRequest = document.getElementById("urgentRequest");
