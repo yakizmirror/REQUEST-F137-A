@@ -24,7 +24,7 @@ const DEFAULT_SCHOOLS = [
 ];
 
 const DEFAULT_COURSES = [
-    "BSIT", "BSCS", "BSIS", "BSCRIM", "BEED", "BSBA-MM", "BSBA-FM", "BSBA-HRDM", "BSED-ENGLISH"
+    "BSIT", "BSCS", "BSIS",  "BEED", "BSBA-MM", "BSBA-FM", "BSBA-HRDM", "BSED-ENGLISH", "BSCRIM",
 ];
 
 const MAX_STUDENTS = 8;
